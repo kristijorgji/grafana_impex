@@ -1,0 +1,26 @@
+{
+  "name": "grafana_impex",
+  "version": "0.1.",
+  "engines": {
+    "node": ">=13.x"
+  },
+  "type": "module",
+  "description": "Grafana import/export cli tool",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristijorgji/grafana_impex.git"
+  },
+  "author": "@kristijorgji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kristijorgji/grafana_impex/issues"
+  },
+  "homepage": "https://github.com/kristijorgji/grafana_impex#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1",
+    "winston": "^3.3.3",
+    "yargs": "^16.2.0"
+  }
+}

@@ -1,8 +1,14 @@
 .idea/
+
+node_modules/
+
 grafonnet-lib/
 .env*
 !.env.dist
 build/
+templates/secrets.json
+exported/
+
 
 # OS generated files #
 ######################
