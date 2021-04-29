@@ -33,7 +33,7 @@ export default class Exporter {
             const exportPath = `${this.exportedDatasourcesDir}/${el.id}.json`;
             logger.debug(`Exporting datasource ${el.id} to ${exportPath}`)
             const obj = await this.api.getDatasource(el.id);
-            fs.writeFileSync(exportPath, JSON.stringify(obj, null, 2));
+            fs.writeFileSync(exportPath, JSON.stringify(this._sanitizeDatasource(obj), null, 2));
         }
     }
 
@@ -44,7 +44,28 @@ export default class Exporter {
             const exportPath = `${this.exportedDashboardDir}/${el.uid}.json`;
             logger.debug(`Exporting dashboard ${el.uid} to ${exportPath}`)
             const obj = await this.api.getDashboard(el.uid);
+            if (obj.meta.isFolder) {
+                logger.debug(`Skipping because it is type folder`);
+                continue;
+            }
             fs.writeFileSync(exportPath, JSON.stringify(obj, null, 2));
         }
+    }
+
+    _sanitizeDatasource(obj) {
+        const fields = [
+            'url',
+            'password',
+            'user',
+            'database',
+        ];
+
+        for (const field of fields) {
+            if (field in obj) {
+                obj[field] = '';
+            }
+        }
+
+        return obj;
     }
 }

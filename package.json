@@ -1,12 +1,15 @@
 {
   "name": "grafana_impex",
-  "version": "0.1.",
+  "version": "0.0.1",
   "engines": {
     "node": ">=13.x"
   },
   "type": "module",
   "description": "Grafana import/export cli tool",
   "main": "src/index.js",
+  "bin": {
+    "gimpex": "src/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kristijorgji/grafana_impex.git"

@@ -1,0 +1,8 @@
+.idea/
+build/
+templates/
+bin/
+exported/
+Makefile
+.env*
+grafonnet-lib/

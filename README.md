@@ -20,29 +20,41 @@ If you want to use grafonnet for generating grafana json based on templates, the
 
 ## 2a. How To Use (NodeJS Required)
 
+First install the node package globally:
+```shell
+npm install -g grafana_impex@0.0.1
+```
 
-Copy `.env.dist` to `.env` and adjust the credentials for grafana connection and auth.
+This will make available the command `gimpex` from all paths.
+
+Then create a directory where you will store your grafana provisioning project.
+```shell
+mkdir grafana_provision
+cd grafana_provision
+```
+
+Copy `.env.dist` in this github repository to `.env` in your created dir above, and adjust the credentials for grafana connection and auth.
 
 1. To export all resources like `datasources, folders, dashboards` from grafana instance:
 
 ```shell
-node src/index.js export
+gimpex export
 ```
 ![Demo](docs/images/export-demo.png)
 
 2. To import all resources to the instance specified in `.env`
 
 ```shell
-node src/index.js import default
+gimpex import default
 ```
 
 Instead of `default` you can specify the environment which you used to export.
 
-For example `ENV=prod node src/index.js export` will use env file `.env.prod` and export at `exported/prod` instead of `exported/default`
+For example `ENV=prod gimpex export` will use env file `.env.prod` and export at `exported/prod` instead of `exported/default`
 
 Then you can import from prod exported to current connection (specified in .env) like
 ```shell
-node src/index.js import prod
+gimpex import prod
 ```
 
 For adding secrets to datasources so they are fully configured during import see point 3.
@@ -59,20 +71,9 @@ and `templates/secrets.example.json`
 
 Very easy and straightforward, the json you specify in datasource-credentials folder should have json format with id of datasource you want to fill with credential (you can check that form exported folder, exported/datasources), then based on the datasource type fill the secrets which are read from the secrets.json file that you can generate however you want and do not store in git or anywhere.
 
+## 4. Contributing/Local Development
 
-## 4. Playground
-
-If you are interested in developing, contribute to this project or try it out in one easy way feel free to use the docker as instructed below.
-
-Just to import/export against create docker throwaway container:
-```shell
-docker run --name play-grafana --rm -d -p 3000:3000 grafana/grafana:7.1.4
-```
-
-To stop:
-```shell
-docker stop play-grafana
-```
+See **[LOCAL-DEVELOPMENT.md](docs/LOCAL-DEVELOPMENT.md)**
 
 ## 5. License
 @Kristi Jorgji MIT
