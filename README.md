@@ -20,29 +20,41 @@ If you want to use grafonnet for generating grafana json based on templates, the
 
 ## 2a. How To Use (NodeJS Required)
 
+First install the node package globally:
+```shell
+npm install -g grafana_impex@0.0.1
+```
 
-Copy `.env.dist` to `.env` and adjust the credentials for grafana connection and auth.
+This will make available the command `gimpex` from all paths.
+
+Then create a directory where you will store your grafana provisioning project.
+```shell
+mkdir grafana_provision
+cd grafana_provision
+```
+
+Copy `.env.dist` in this github repository to `.env` in your created dir above, and adjust the credentials for grafana connection and auth.
 
 1. To export all resources like `datasources, folders, dashboards` from grafana instance:
 
 ```shell
-node src/index.js export
+gimpex export
 ```
 ![Demo](docs/images/export-demo.png)
 
 2. To import all resources to the instance specified in `.env`
 
 ```shell
-node src/index.js import default
+gimpex import default
 ```
 
 Instead of `default` you can specify the environment which you used to export.
 
-For example `ENV=prod node src/index.js export` will use env file `.env.prod` and export at `exported/prod` instead of `exported/default`
+For example `ENV=prod gimpex export` will use env file `.env.prod` and export at `exported/prod` instead of `exported/default`
 
 Then you can import from prod exported to current connection (specified in .env) like
 ```shell
-node src/index.js import prod
+gimpex import prod
 ```
 
 For adding secrets to datasources so they are fully configured during import see point 3.

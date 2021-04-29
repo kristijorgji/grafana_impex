@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as config from './config.mjs'
 import Api from "./api.mjs";
 import Yargs from "yargs"
