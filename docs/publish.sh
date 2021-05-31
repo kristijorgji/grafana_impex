@@ -1,7 +1,5 @@
-# Publish To Npm
+#!/usr/bin/env bash
 
-```shell
 yarn build
 npm login
 npm publish --access public
-```

@@ -1,5 +1,6 @@
-import fetch from "node-fetch";
-import HttpClientError from "./httpClientError.js";
+// @ts-nocheck
+import fetch from 'node-fetch';
+import HttpClientError from './httpClientError';
 
 export default class HttpClient {
     constructor(config) {
@@ -10,13 +11,12 @@ export default class HttpClient {
     }
 
     getJson(url) {
-        return fetch(this._url(url), { headers: this._headers()}).then(async (r) => {
+        return fetch(this._url(url), { headers: this._headers() }).then(async r => {
             if (r.status === 200) {
                 return r.json();
-            } else {
-                throw await HttpClientError.new(r)
             }
-        })
+            throw await HttpClientError.new(r);
+        });
     }
 
     postJson(url, data) {
@@ -26,7 +26,7 @@ export default class HttpClient {
                 'Content-Type': 'application/json',
                 ...this._headers(),
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         });
     }
 
@@ -37,7 +37,7 @@ export default class HttpClient {
                 'Content-Type': 'application/json',
                 ...this._headers(),
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         });
     }
 
@@ -46,8 +46,10 @@ export default class HttpClient {
     }
 
     _headers() {
-        return this.apiToken ? {
-            'Authorization': `Bearer ${this.apiToken}`
-        } : {}
+        return this.apiToken
+            ? {
+                  Authorization: `Bearer ${this.apiToken}`,
+              }
+            : {};
     }
 }

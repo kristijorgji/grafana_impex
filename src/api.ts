@@ -1,11 +1,12 @@
-import {escape} from 'querystring'
-import HttpClient from "./httpClient.mjs";
-import HttpClientError from "./httpClientError.js";
+// @ts-nocheck
+import { escape } from 'querystring';
+import HttpClient from './httpClient';
+import HttpClientError from './httpClientError';
 
 export default class Api {
     constructor(config) {
-        this.baseUrl = `http://${config.host}:${config.port}`
-        this.baseUrlWithAuth = `http://${config.username}:${escape(config.password)}@${config.host}:${config.port}`
+        this.baseUrl = `http://${config.host}:${config.port}`;
+        this.baseUrlWithAuth = `http://${config.username}:${escape(config.password)}@${config.host}:${config.port}`;
         this.c = new HttpClient({
             baseUrl: this.baseUrl,
             baseUrlWithAuth: this.baseUrlWithAuth,
@@ -25,9 +26,8 @@ export default class Api {
         return this.c.postJson('api/folders', data).then(async r => {
             if (r.status === 200) {
                 return r.json();
-            } else {
-                throw await HttpClientError.new(r);
             }
+            throw await HttpClientError.new(r);
         });
     }
 
@@ -43,9 +43,8 @@ export default class Api {
         return this.c.postJson(`api/datasources`, data).then(async r => {
             if (r.status === 200) {
                 return r.json();
-            } else {
-                throw await HttpClientError.new(r);
             }
+            throw await HttpClientError.new(r);
         });
     }
 
@@ -53,9 +52,8 @@ export default class Api {
         return this.c.putJson(`api/datasources/${id}`, data).then(async r => {
             if (r.status === 200) {
                 return r.json();
-            } else {
-                throw await HttpClientError.new(r);
             }
+            throw await HttpClientError.new(r);
         });
     }
 
@@ -71,9 +69,8 @@ export default class Api {
         return this.c.postJson(`api/dashboards/db`, data).then(async r => {
             if (r.status === 200) {
                 return r.json();
-            } else {
-                throw await HttpClientError.new(r);
             }
+            throw await HttpClientError.new(r);
         });
     }
 }

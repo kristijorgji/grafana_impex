@@ -22,7 +22,7 @@ If you want to use grafonnet for generating grafana json based on templates, the
 
 First install the node package globally:
 ```shell
-npm install -g grafana_impex@0.0.1
+npm install -g grafana_impex@0.0.2
 ```
 
 This will make available the command `gimpex` from all paths.
@@ -69,7 +69,7 @@ For this reason `jsonnet` is being used to compile templates to `json` files
 See `templates/datasources-credentials/example.jsonnet`
 and `templates/secrets.example.json`
 
-Very easy and straightforward, the json you specify in datasource-credentials folder should have json format with id of datasource you want to fill with credential (you can check that form exported folder, exported/datasources), then based on the datasource type fill the secrets which are read from the secrets.json file that you can generate however you want and do not store in git or anywhere.
+Very easy and straightforward, the json you specify in datasource-credentials folder should have json format with name of datasource you want to fill with credential (you can check that form exported folder, exported/datasources), then based on the datasource type fill the secrets which are read from the secrets.json file that you can generate however you want and do not store in git or anywhere.
 
 ## 4. Contributing/Local Development
 

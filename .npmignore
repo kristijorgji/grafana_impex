@@ -6,3 +6,10 @@ exported/
 Makefile
 .env*
 grafonnet-lib/
+__tests__/
+coverage/
+docs/
+node_modules/
+src/
+tsconfig.json/
+yarn-error.log

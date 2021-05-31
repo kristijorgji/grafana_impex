@@ -1,15 +1,17 @@
-import dotenv from 'dotenv'
+// @ts-nocheck
+import dotenv from 'dotenv';
 
-dotenv.config({ path: `.env${process.env.ENV ? `.${process.env.ENV}` : ''}` })
+dotenv.config({ path: `.env${process.env.ENV ? `.${process.env.ENV}` : ''}` });
 
 function requireEnv(key, defaultValue) {
     if (key in process.env) {
-        return process.env[key]
-    } else if (defaultValue !== undefined) {
+        return process.env[key];
+    }
+    if (defaultValue !== undefined) {
         return defaultValue;
     }
 
-    throw new Error(`Environment variable ${key} is required`)
+    throw new Error(`Environment variable ${key} is required`);
 }
 
 export const grafana = {
@@ -18,4 +20,4 @@ export const grafana = {
     username: requireEnv('GRAFANA_USERNAME'),
     password: requireEnv('GRAFANA_PASSWORD'),
     apiToken: requireEnv('GRAFANA_API_TOKEN', null),
-}
+};

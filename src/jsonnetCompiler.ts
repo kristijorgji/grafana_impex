@@ -1,4 +1,5 @@
-import {execSync} from "child_process";
+// @ts-nocheck
+import { execSync } from 'child_process';
 
 export default class JsonnetCompiler {
     constructor(config = {}) {
@@ -6,15 +7,13 @@ export default class JsonnetCompiler {
     }
 
     toObj(filePath) {
-        const r = execSync(
-            `JSONNET_PATH=${this.grafonnetPath} jsonnet ${filePath}`,
-        ).toString();
+        const r = execSync(`JSONNET_PATH=${this.grafonnetPath} jsonnet ${filePath}`).toString();
         return JSON.parse(r);
     }
 }
 
 function sleep(ms) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         setTimeout(resolve, ms);
     });
 }

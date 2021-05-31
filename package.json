@@ -1,14 +1,25 @@
 {
   "name": "grafana_impex",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "node": ">=13.x"
   },
-  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "start": "ts-node src/index.ts",
+    "build": "rm -rf build/ && tsc && mv build/src/* build/ && rm -rf build/src && chmod +x build/index.js",
+    "test": "jest",
+    "lint:eslint": "eslint --ext js,mjs,ts src",
+    "lint:prettier": "prettier --check 'src/**/*.{js,mjs,ts}'",
+    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "fix:eslint": "eslint --fix --ext js,mjs,ts src",
+    "fix:prettier": "prettier --write 'src/**/*.{js,mjs,ts}'",
+    "fix": "yarn fix:eslint && yarn fix:prettier"
+  },
   "description": "Grafana import/export cli tool",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "bin": {
-    "gimpex": "src/index.js"
+    "gimpex": "build/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +36,40 @@
     "node-fetch": "^2.6.1",
     "winston": "^3.3.3",
     "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "@types/winston": "^2.4.4",
+    "@types/yargs": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsdoc": "^35.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0",
+    "ts-jest": "^27.0.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/(*.)+(spec|test).(t|j)s?(x)",
+      "**/?(*.)+(spec|test).(t|j)s?(x)"
+    ],
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
   }
 }

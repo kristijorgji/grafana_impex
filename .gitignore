@@ -6,8 +6,9 @@ grafonnet-lib/
 .env*
 !.env.dist
 build/
+coverage/
 templates/secrets.json
-exported/
+/exported
 
 
 # OS generated files #

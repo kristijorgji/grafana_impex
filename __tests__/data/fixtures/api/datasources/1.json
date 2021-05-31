@@ -1,0 +1,26 @@
+{
+  "id": 3,
+  "orgId": 1,
+  "name": "Production-MySQL",
+  "type": "mysql",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "maxIdleConns": 1,
+    "maxOpenConns": 1
+  },
+  "secureJsonFields": {
+    "password": true
+  },
+  "version": 7,
+  "readOnly": false
+}

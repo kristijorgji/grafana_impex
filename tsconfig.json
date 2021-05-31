@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "outDir": "build",
+    "lib": ["es2019"],
+    "rootDir": ".",
+
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strict": false
+  },
+  "exclude": [
+    "__tests__",
+    "coverage"
+  ]
+}

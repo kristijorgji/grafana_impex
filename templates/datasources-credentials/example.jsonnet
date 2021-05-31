@@ -2,7 +2,7 @@ local secrets = import "../secrets.example.json";
 local db = secrets.prodMysql;
 
 {
-  "id": 3,
+  "name": "Should-Match-DS-Name",
   "url": db.url,
   "user": db.user,
   "database": db.database,

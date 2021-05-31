@@ -22,3 +22,13 @@ npm link
 ```
 
 This will make `gimpex` cli command available from all paths.
+
+
+### IntelliJ IDE
+
+To run and debug with typescript, just create a new `npm` configuration, and choose in scripts `start`.
+Then can set breakpoints in `ts` files and run in debug mode
+
+![IntelliJ TS debug](./images/intellij-ts-debug.png)
+
+You can also just put breakpoint in `build` folder compiled files in any case and start debug from build/index.js.

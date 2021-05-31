@@ -1,6 +1,7 @@
-import Importer from "../importer.mjs";
-import logger from "../logger.mjs";
-import JsonnetCompiler from "../jsonnetCompiler.mjs";
+// @ts-nocheck
+import Importer from '../importer';
+import logger from '../logger';
+import JsonnetCompiler from '../jsonnetCompiler';
 
 export default class Import {
     constructor(api, argv) {
@@ -13,7 +14,7 @@ export default class Import {
     }
 
     async run() {
-        logger.info(`Started importing from env ${this.argv.fromEnv}, directory ${this.importedDir}`)
+        logger.info(`Started importing from env ${this.argv.fromEnv}, directory ${this.importedDir}`);
         await this.importer.importAll();
     }
 }

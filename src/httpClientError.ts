@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default class HttpClientError extends Error {
     constructor(r) {
         super(`${r.status}: ${r.body}`);
@@ -5,11 +6,9 @@ export default class HttpClientError extends Error {
     }
 
     static async new(r) {
-        return new HttpClientError(
-            {
-                status: r.status,
-                body: await r.text(),
-            }
-        )
+        return new HttpClientError({
+            status: r.status,
+            body: await r.text(),
+        });
     }
 }
