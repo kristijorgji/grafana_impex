@@ -22,7 +22,7 @@ If you want to use grafonnet for generating grafana json based on templates, the
 
 First install the node package globally:
 ```shell
-npm install -g grafana_impex@0.0.2
+npm install -g grafana_impex@0.0.3
 ```
 
 This will make available the command `gimpex` from all paths.

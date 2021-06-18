@@ -1,19 +1,17 @@
 #!/usr/bin/env node
 
-// @ts-nocheck
-
 import * as config from './config';
 import Api from './api';
 import Yargs from 'yargs';
-import Export from './commands/export';
-import Import from './commands/import';
+import Export, { ExportArgs } from './commands/export';
+import Import, { ImportArgs } from './commands/import';
 
 const VERSION = '0.0.2';
 
 const api = new Api(config.grafana);
 
-Yargs(process.argv.slice(2))
-    .command(
+void Yargs(process.argv.slice(2))
+    .command<ExportArgs>(
         'export [env]',
         'Export resources from provided .env connection',
         yargs => {
@@ -28,10 +26,10 @@ Yargs(process.argv.slice(2))
                 });
         },
         argv => {
-            new Export(api, argv).run();
+            void new Export(api, argv).run();
         },
     )
-    .command(
+    .command<ImportArgs>(
         'import [fromEnv]',
         'Import resources to current grafana connection from given env',
         yargs => {
@@ -47,7 +45,7 @@ Yargs(process.argv.slice(2))
                 });
         },
         argv => {
-            new Import(api, argv).run();
+            void new Import(api, argv).run();
         },
     )
     .option('verbose', {

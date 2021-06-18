@@ -2,9 +2,22 @@
 import fs from 'fs';
 import { walkDirFilesSyncRecursive } from './utils';
 import logger from './logger';
+import Api from './api';
+import JsonnetCompiler from './jsonnetCompiler';
+
+type Config = {
+    importedDir: string;
+};
 
 export default class Importer {
-    constructor(api, compiler, config) {
+    private readonly api: Api;
+    private readonly compiler: JsonnetCompiler;
+    private readonly importedDir: string;
+    private readonly importedFoldersDir: string;
+    private readonly importedDatasourcesDir: string;
+    private readonly importedDashboardDir: string;
+
+    constructor(api: Api, compiler: JsonnetCompiler, config: Config) {
         this.api = api;
         this.compiler = compiler;
         this.importedDir = config.importedDir;

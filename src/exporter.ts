@@ -2,9 +2,19 @@
 import fs from 'fs';
 import logger from './logger';
 import { cleanupFolderBeforeSave, cleanupDatasourceBeforeSave, cleanupDashboardBeforeSave } from './exporterTools';
+import Api from './api';
+
+type Config = {
+    exportedDir: string;
+};
 
 export default class Exporter {
-    constructor(api, config: Record<string, string>) {
+    private readonly api: Api;
+    private readonly exportedFoldersDir: string;
+    private readonly exportedDatasourcesDir: string;
+    private readonly exportedDashboardDir: string;
+
+    constructor(api: Api, config: Config) {
         this.api = api;
         this.exportedFoldersDir = `${config.exportedDir}/folders`;
         this.exportedDatasourcesDir = `${config.exportedDir}/datasources`;

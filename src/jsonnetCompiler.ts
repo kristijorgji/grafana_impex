@@ -1,14 +1,15 @@
-// @ts-nocheck
 import { execSync } from 'child_process';
 
 export default class JsonnetCompiler {
-    constructor(config = {}) {
+    private readonly grafonnetPath: string;
+
+    constructor(config: { grafonnetPath?: string } = {}) {
         this.grafonnetPath = config.grafonnetPath || 'grafonnet-lib';
     }
 
-    toObj(filePath) {
+    toObj<T>(filePath: string): T {
         const r = execSync(`JSONNET_PATH=${this.grafonnetPath} jsonnet ${filePath}`).toString();
-        return JSON.parse(r);
+        return JSON.parse(r) as T;
     }
 }
 
